@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- all css files -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/responsive.css" />
+  </head>
+  <body>
+    <!-- header part ( show video submite button and clear button) start  -->
+    <header style="text-align: center">
+      <h1 style="width: 100%; display: block">Free Facebook and Youtube Views</h1>
+      <div class="header-inner">
+        <button class="show_video_submite_box">Display the video submission field</button>
+        <button class="clear_all">Clear all data</button>
+      </div>
+    </header>
+    <!-- header part ( show video submite button and clear button) end  -->
+
+    <!-- vdieo submite box start -->
+    <main>
+      <div class="video_submite_box">
+        <div class="item">
+          <label for="url" class="error">Enter your(facebook or youtube) video embied code</label>
+          <textarea name="" id="url" placeholder="Paste your video embed code here..."></textarea>
+        </div>
+        <div class="item">
+          <label for="repet-time">Enter the number of times you want the video to repeat</label>
+          <input id="repet-time" type="number" value="1" />
+        </div>
+        <div class="item">
+          <button class="submite">Add Video</button>
+        </div>
+      </div>
+    </main>
+    <!-- vdieo submite box end -->
+
+    <!-- video list container start -->
+    <div style="text-align: center; margin: auto">
+      <div class="video-list">
+        <span></span>
+      </div>
+    </div>
+    <!-- video list container end -->
+
+    <!-- all js files -->
+    <script src="./app/data.js"></script>
+    <script src="./app/functions.js"></script>
+    <script src="./app/main.js"></script>
+  </body>
+</html>
