@@ -97,7 +97,6 @@ main button:hover,
 
 .video-list .video-singl-item .video-item {
   overflow: hidden !important;
-  height: 290px;
 }
 iframe {
   width: 100% !important;
