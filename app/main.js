@@ -1,3 +1,5 @@
+const isIfrem = /<iframe.*?<\/iframe>/gs;
+
 const show_video_submite_box = document.querySelector(".show_video_submite_box");
 const video_submite_box = document.querySelector("main");
 const video_link = document.querySelector("#url");
@@ -25,15 +27,22 @@ const show_videos = () => {
   let videos = "";
   for (let i = 0; i < repet_tiem; i++) {
     videos += `
+    <div class="col-lg-4 col-md-3 col-sm-2 mt-2 mb-0 video-singl-item">
         <div class="video-item">
-          <div class="video-item-inner">
             ${videos_data}
-          </div>
         </div>
+    </div>
+
       `;
+    if (i === 50) {
+      break;
+    }
   }
+
   if (videos_data) {
     video_list_container.innerHTML = videos;
+  } else {
+    video_list_container.innerHTML = `<p class="text-center">Don't have any video, first you need to submit the video embed code/link</p>`;
   }
 };
 show_videos();
@@ -44,10 +53,12 @@ add_video.onclick = () => {
   let repet_tiem = repet_time.value;
 
   const video_link_data = video_link.value.trim();
-  if (video_link_data) {
+  if (isIfrem.test(video_link_data)) {
     videos_data.push(video_link_data);
+    error.innerHTML = `Video successfully added!`;
+    error.style.color = "green";
   } else {
-    error.innerHTML = `Invalid URL. Please enter a valid URL.`;
+    error.innerHTML = `Invalid URL. Please enter a valid iframe embed code`;
     error.style.color = "red";
     return;
   }
@@ -62,5 +73,5 @@ add_video.onclick = () => {
 clear_all.onclick = () => {
   localStorage.removeItem("videos_data");
   localStorage.removeItem("repet_tiem");
-  video_list_container.innerHTML = "";
+  video_list_container.innerHTML = `<p class="text-center">Don't have any video, first you need to submit the video embed code/link</p>`;
 };
