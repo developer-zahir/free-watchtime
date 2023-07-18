@@ -55,7 +55,10 @@ add_video.onclick = () => {
   const video_link_data = video_link.value.trim();
   if (isIfrem.test(video_link_data)) {
     videos_data.push(video_link_data);
-    error.innerHTML = `Video successfully added!`;
+    error.innerHTML = `Video successfully added!
+    <br>
+    Wait a while
+    `;
     error.style.color = "green";
   } else {
     error.innerHTML = `Invalid URL. Please enter a valid iframe embed code`;

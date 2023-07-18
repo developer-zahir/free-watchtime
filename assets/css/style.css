@@ -8,11 +8,23 @@
 ::-webkit-scrollbar {
   width: 0;
 }
+
+.copyright {
+ position: relative;
+ top: -15px;
+}
+.copyright a{
+  text-decoration: none;
+  color: black;
+  transition: .4s;
+}
+.copyright a:hover{
+  color: green;
+}
 body {
   width: 80%;
   margin: auto;
   border: 1px solid #ddd;
-  
 }
 header h1 {
   font-size: 50px;
@@ -118,7 +130,7 @@ iframe {
     font-size: 30px;
   }
 }
-.text-center{
+.text-center {
   text-align: center;
   background: rgba(255, 0, 0, 0.192);
   padding: 20px;
