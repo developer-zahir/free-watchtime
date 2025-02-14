@@ -1,5 +1,5 @@
 const isIfrem = /<iframe.*?<\/iframe>/gs;
-const isYoutubeShort = /https:\/\/(www\.)?youtube\.com\/shorts\/[a-zA-Z0-9_-]+/; // Updated regex
+const isYoutubeShort = /https?:\/\/(www\.)?youtube\.com\/shorts\/[a-zA-Z0-9_-]+(\?.*)?/; // Improved regex
 
 const show_video_submite_box = document.querySelector(".show_video_submite_box");
 const video_submite_box = document.querySelector("main");
