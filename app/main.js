@@ -94,19 +94,21 @@ clear_all.onclick = () => {
   video_list_container.innerHTML = `<p class="text-center">Don't have any video, first you need to submit the video embed code/link</p>`;
 };
 
-// Mute all YouTube videos
+// Mute all YouTube videos and start auto-play
 mute_all.onclick = () => {
   const iframes = document.querySelectorAll("iframe");
 
   iframes.forEach((iframe) => {
     if (iframe.src.includes("youtube.com/embed")) {
-      // Mute the video by adding `?mute=1` to the iframe src
+      // Ensure the video is muted and autoplays
       if (!iframe.src.includes("?mute=1")) {
-        iframe.src += "?mute=1";
+        iframe.src += "?mute=1&autoplay=1";
+      } else if (!iframe.src.includes("autoplay=1")) {
+        iframe.src += "&autoplay=1";
       }
     }
   });
 
-  error.innerHTML = `All videos have been muted.`;
+  error.innerHTML = `All videos have been muted and are auto-playing.`;
   error.style.color = "green";
 };
