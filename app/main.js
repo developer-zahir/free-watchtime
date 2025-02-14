@@ -1,5 +1,5 @@
 const isIfrem = /<iframe.*?<\/iframe>/gs;
-const isYoutubeShort = /https?:\/\/(www\.)?youtube\.com\/shorts\/[a-zA-Z0-9_-]+(\?.*)?/; // Improved regex
+const isYoutubeShort = /https?:\/\/(www\.)?youtube\.com\/shorts\/[a-zA-Z0-9_-]+(\?.*)?/;
 
 const show_video_submite_box = document.querySelector(".show_video_submite_box");
 const video_submite_box = document.querySelector("main");
@@ -9,6 +9,7 @@ const video_list_container = document.querySelector(".video-list");
 const add_video = document.querySelector(".submite");
 const clear_all = document.querySelector(".clear_all");
 const error = document.querySelector(".error");
+const mute_all = document.querySelector(".mute_all"); // Mute All button
 
 // Toggle video submission box show/hide
 show_video_submite_box.onclick = () => {
@@ -91,4 +92,21 @@ clear_all.onclick = () => {
   localStorage.removeItem("videos_data");
   localStorage.removeItem("repet_tiem");
   video_list_container.innerHTML = `<p class="text-center">Don't have any video, first you need to submit the video embed code/link</p>`;
+};
+
+// Mute all YouTube videos
+mute_all.onclick = () => {
+  const iframes = document.querySelectorAll("iframe");
+
+  iframes.forEach((iframe) => {
+    if (iframe.src.includes("youtube.com/embed")) {
+      // Mute the video by adding `?mute=1` to the iframe src
+      if (!iframe.src.includes("?mute=1")) {
+        iframe.src += "?mute=1";
+      }
+    }
+  });
+
+  error.innerHTML = `All videos have been muted.`;
+  error.style.color = "green";
 };
