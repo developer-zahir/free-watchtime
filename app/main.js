@@ -1,5 +1,5 @@
 const isIfrem = /<iframe.*?<\/iframe>/gs;
-const isYoutubeShort = /https:\/\/www\.youtube\.com\/shorts\/[a-zA-Z0-9_-]+/;
+const isYoutubeShort = /https:\/\/(www\.)?youtube\.com\/shorts\/[a-zA-Z0-9_-]+/; // Updated regex
 
 const show_video_submite_box = document.querySelector(".show_video_submite_box");
 const video_submite_box = document.querySelector("main");
@@ -17,7 +17,7 @@ show_video_submite_box.onclick = () => {
 
 // Convert YouTube short link to embeddable iframe code
 const convertYoutubeShortToIframe = (url) => {
-  const videoId = url.split('/shorts/')[1].split('?')[0];
+  const videoId = url.split('/shorts/')[1].split('?')[0]; // Extract video ID
   return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 };
 
