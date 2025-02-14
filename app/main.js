@@ -1,4 +1,5 @@
 const isIfrem = /<iframe.*?<\/iframe>/gs;
+const isYoutubeShort = /https:\/\/www\.youtube\.com\/shorts\/[a-zA-Z0-9_-]+/;
 
 const show_video_submite_box = document.querySelector(".show_video_submite_box");
 const video_submite_box = document.querySelector("main");
@@ -12,6 +13,12 @@ const error = document.querySelector(".error");
 // Toggle video submission box show/hide
 show_video_submite_box.onclick = () => {
   video_submite_box.classList.toggle("active");
+};
+
+// Convert YouTube short link to embeddable iframe code
+const convertYoutubeShortToIframe = (url) => {
+  const videoId = url.split('/shorts/')[1].split('?')[0];
+  return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 };
 
 // Show videos data
@@ -32,7 +39,6 @@ const show_videos = () => {
             ${videos_data}
         </div>
     </div>
-
       `;
     if (i === 50) {
       break;
@@ -60,8 +66,16 @@ add_video.onclick = () => {
     Wait a while
     `;
     error.style.color = "green";
+  } else if (isYoutubeShort.test(video_link_data)) {
+    const iframeCode = convertYoutubeShortToIframe(video_link_data);
+    videos_data.push(iframeCode);
+    error.innerHTML = `Video successfully added!
+    <br>
+    Wait a while
+    `;
+    error.style.color = "green";
   } else {
-    error.innerHTML = `Invalid URL. Please enter a valid iframe embed code`;
+    error.innerHTML = `Invalid URL. Please enter a valid iframe embed code or YouTube short link`;
     error.style.color = "red";
     return;
   }
